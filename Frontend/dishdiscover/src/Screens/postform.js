@@ -4,6 +4,7 @@ const PostRecipe = () => {
   const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState('');
   const [instructions, setInstructions] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,29 +18,39 @@ const PostRecipe = () => {
 
     // Send the new recipe data to the backend API
     try {
+      console.log('Sending request to:', process.env.REACT_APP_POST_RECIPE_URL);
       const response = await fetch(process.env.REACT_APP_POST_RECIPE_URL, {
+        mode: "cors",
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(newRecipe)
       });
+
+      console.log('Response status:', response.status);
+      
       if (!response.ok) {
-        print(response)
-        throw new Error('Failed to post recipe');
+        const errorMessage = await response.text();
+        throw new Error(`Failed to post recipe: ${errorMessage}`);
       }
+
+      console.log('Recipe posted successfully');
+      
       // Clear input fields after successful submission
       setTitle('');
       setIngredients('');
       setInstructions('');
     } catch (error) {
       console.error('Error posting recipe:', error);
+      setError('Failed to post recipe. Please try again later.');
     }
   };
 
   return (
     <div>
       <h1>Add New Recipe</h1>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <label>
           Title:

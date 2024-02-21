@@ -9,7 +9,8 @@ RUN npm install
 
 COPY . .
 
-ENV REACT_APP_POST_RECIPE_URL=http://postrecipe:3002/recipe REACT_APP_GET_RECIPE_URL=http://getrecipe:3001/recipes
+ENV REACT_APP_POST_RECIPE_URL=http://postrecipe:3002/recipe 
+ENV REACT_APP_GET_RECIPE_URL=http://getrecipe:3001/recipes
 
 EXPOSE 3000
 
