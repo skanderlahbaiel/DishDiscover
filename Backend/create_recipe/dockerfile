@@ -2,7 +2,7 @@
 FROM node:lts-buster
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app 
 
 # Copy dependecy definitions
 COPY package.json ./package.json
@@ -11,11 +11,12 @@ COPY package-lock.json ./package-lock.json
 # Install dependencies
 RUN npm install --silent && npm cache clean --force
 
-# Bundle app source
-COPY . .
+# Bundle app source 
+COPY . . 
 
-ENV DB_USER=recipe_user DB_HOST=localhost RECIPE_DB=recipes_db DB_PASSWORD=user DB_PORT=5432 PORT=3002
+ENV DB_USER=recipe_user DB_HOST=recipes_db RECIPE_DB=recipes_db DB_PASSWORD=user DB_PORT=5432 PORT=3002
 
-EXPOSE 3002 
+EXPOSE 3002  
 
-CMD [ "node", "create_recipe.js" ]
+
+CMD [ "node", "create_recipe.js" ] 

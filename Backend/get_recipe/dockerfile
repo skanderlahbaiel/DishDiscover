@@ -9,7 +9,7 @@ RUN npm install
 
 COPY . .
 
-ENV DB_USER=recipe_user DB_HOST=127.0.0.1 RECIPE_DB=recipes_db DB_PASSWORD=user DB_PORT=5432 PORT=3001
+ENV DB_USER=recipe_user DB_HOST=recipes_db RECIPE_DB=recipes_db DB_PASSWORD=user DB_PORT=5432 PORT=3001
 
 EXPOSE 3001
 
