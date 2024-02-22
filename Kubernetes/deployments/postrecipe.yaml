@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postrecipe-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: postrecipe-server
+  template:
+    metadata:
+      labels:
+        app: postrecipe-server
+    spec:
+      containers:
+      - name: postrecipe
+        image: skanderlahbaiel/postrecipe:latest
+        ports:
+        - containerPort: 3002

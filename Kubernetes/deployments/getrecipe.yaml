@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: getrecipe-server
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: getrecipe-server
+  template:
+    metadata:
+      labels:
+        app: getrecipe-server
+    spec:
+      containers:
+      - name: getrecipe
+        image: skanderlahbaiel/getrecipe:latest
+        ports:
+        - containerPort: 3001
