@@ -17,3 +17,6 @@ spec:
         image: skanderlahbaiel/frontend:latest
         ports:
         - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: frontend-config
