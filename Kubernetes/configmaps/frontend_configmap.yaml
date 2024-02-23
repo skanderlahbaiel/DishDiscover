@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: frontend-config
-data:
-  REACT_APP_POST_RECIPE_URL: "http://192.168.1.1/postrecipe"
-  REACT_APP_GET_RECIPE_URL: "http://192.168.1.1/getrecipe"
-

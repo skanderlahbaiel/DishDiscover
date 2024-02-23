@@ -1,3 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+data:
+  REACT_APP_POST_RECIPE_URL: "http://$(status.loadBalancer.ingress[0].ip)/postrecipe"
+  REACT_APP_GET_RECIPE_URL: "http://$(status.loadBalancer.ingress[0].ip)/getrecipe"
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,3 +29,17 @@ spec:
         envFrom:
         - configMapRef:
             name: frontend-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend-server
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: ClusterIP
+
