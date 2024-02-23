@@ -17,6 +17,9 @@ spec:
         image: skanderlahbaiel/postrecipe:latest
         ports:
         - containerPort: 3002
+        env:
+        - name: DB_HOST
+          value: postgres-service
 ---
 apiVersion: v1
 kind: Service
