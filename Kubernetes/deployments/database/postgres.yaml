@@ -14,9 +14,12 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: skanderlahbaiel/db
+        image: skanderlahbaiel/postgres
         ports:
         - containerPort: 5432
+        env:
+        - name: POSTGRES_PASSWORD
+          value: "user"
         volumeMounts:
         - name: postgres-storage
           mountPath: /var/lib/postgresql/data
