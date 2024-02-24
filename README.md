@@ -33,6 +33,10 @@ The DishDiscover web app is deployed using microk8S, which provides a scalable a
 
 ### Containers
 
+  - `frontend`:
+    - Port: 3000
+    - Environment Variables: REACT_APP_POST_RECIPE_URL=http://localhost/postrecipe  REACT_APP_GET_RECIPE_URL=http://localhost/getrecipe
+    - Note that the env variables will be overridden in the yaml file of the deployment to set it to point to the external ip exposed by metalLB
   - `postrecipe`:
     - Port: 3002
     - Environment Variables: DB_USER=recipe_user DB_HOST=recipes_db RECIPE_DB=recipes_db DB_PASSWORD=user DB_PORT=5432
